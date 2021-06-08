@@ -1,0 +1,99 @@
+buildscript {
+
+}
+
+plugins {
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id "org.flywaydb.flyway" version "7.0.2"
+    id 'org.sonarqube' version '2.7'
+    id 'maven-publish'
+    id 'application'
+    id 'jacoco'
+    id 'java'
+    id 'idea'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.wavefront:wavefront-spring-boot-bom:$wavefrontVersion"
+    }
+}
+
+group = 'com.abc.dex.nnn'
+version = '1.0.0'
+sourceCompatibility = 11
+archivesBaseName = 'project-name'
+
+
+if (System.env.BUILD_ID) {
+    version = "${version}-${System.env.BUILD_ID}"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://plugins.gradle.org/m2/' }
+    maven {
+        name 'nexus'
+        url 'https://nexus-ha.cvshealth.com:8888/repository/lib-s-srelease-local-xplabs'
+    }
+}
+
+configurations.all {
+    exclude group: 'junit', module: 'junit'
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    exclude group: 'org.apache.tomcat', module: 'tomcat-jdbc'
+}
+
+dependencies {
+    implementation('com.oracle.ojdbc:ojdbc8:19.3.0.0')
+    implementation files('./libs/db2jcc4.jar')
+
+    implementation 'com.wavefront:wavefront-spring-boot-starter'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.2.5.RELEASE'
+
+    implementation('org.springframework.boot:spring-boot-starter-integration')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation 'joda-time:joda-time:2.10.5'
+    implementation 'io.lettuce:lettuce-core:5.3.3.RELEASE'
+    implementation group: 'io.netty', name: 'netty-transport-native-kqueue', version: '4.1.32.Final'
+    implementation 'org.threeten:threeten-extra:1.5.0'
+    implementation 'org.flywaydb:flyway-core:5.2.4'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    implementation group: 'org.springframework.integration', name: 'spring-integration-sftp', version: '5.1.11.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+    implementation 'com.cvshealth.pbm.red:red-event-notification-lib:latest.integration'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation 'org.junit.platform:junit-platform-commons:1.6.2'
+    testImplementation 'org.junit.platform:junit-platform-engine:1.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.4.6'
+    testImplementation 'org.mockito:mockito-core:3.4.6'
+    testImplementation 'com.github.stefanbirkner:fake-sftp-server-lambda:1.0.0' // in-memory SFTP server lambda wrapper
+    testImplementation 'org.apache.sshd:sshd-sftp:2.4.0' // in-memory SFTP server
+    testImplementation 'org.mockito:mockito-inline:3.4.0'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+jar {
+    enabled = true
+    archiveClassifier.set('scan')
+}
+
+bootJar {
+    archiveClassifier.set('app')
+}
+
+
+tasks.bootJar {
+    layered()
+}
