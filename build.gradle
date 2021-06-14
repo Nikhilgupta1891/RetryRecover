@@ -85,6 +85,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation 'com.wavefront:wavefront-spring-boot-starter'
     implementation('com.oracle.ojdbc:ojdbc8:19.3.0.0')
     implementation files('./libs/db2jcc4.jar')
     implementation 'com.wavefront:wavefront-spring-boot-starter'

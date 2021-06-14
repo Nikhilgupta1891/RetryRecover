@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class TEST_BdaProcessService {
+public class ClassOne {
 
     @Retryable(maxAttemptsExpression = "3", backoff = @Backoff(delayExpression = "1000"))
     public void triggerJob(boolean isDaily, long eventId) {

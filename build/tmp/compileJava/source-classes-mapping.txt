@@ -1,8 +1,12 @@
-com/abc/pbm/racassignmentpoll/services/TEST_BdaProcessService.java
- com.abc.pbm.racassignmentpoll.services.TEST_BdaProcessService
-com/abc/pbm/racassignmentpoll/component/TEST_ScheduledProcessPoller.java
- com.abc.pbm.racassignmentpoll.component.TEST_ScheduledProcessPoller
+com/abc/pbm/racassignmentpoll/component/aspect/ApcAspect.java
+ com.abc.pbm.racassignmentpoll.component.aspect.ApcAspect
+com/abc/pbm/racassignmentpoll/component/ScheduledClass.java
+ com.abc.pbm.racassignmentpoll.component.ScheduledClass
+com/abc/pbm/racassignmentpoll/services/ClassOne.java
+ com.abc.pbm.racassignmentpoll.services.ClassOne
+com/abc/pbm/racassignmentpoll/services/ClassTwo.java
+ com.abc.pbm.racassignmentpoll.services.ClassTwo
 com/abc/pbm/racassignmentpoll/component/aspect/TEST_BdaAspect.java
  com.abc.pbm.racassignmentpoll.component.aspect.TEST_BdaAspect
-com/abc/pbm/racassignmentpoll/RacassignmentpollApplication.java
- com.abc.pbm.racassignmentpoll.RacassignmentpollApplication
+com/abc/pbm/racassignmentpoll/MyApplication.java
+ com.abc.pbm.racassignmentpoll.MyApplication

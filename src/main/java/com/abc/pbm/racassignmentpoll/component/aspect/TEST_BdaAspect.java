@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TEST_BdaAspect {
 
-    @Pointcut("execution(* com.abc.pbm.racassignmentpoll.services.TEST_BdaProcessService.triggerJob(..))")
+    @Pointcut("execution(* com.abc.pbm.racassignmentpoll.services.ClassOne.triggerJob(..))")
     public void bdaTriggerJobs() {
     }
 
-    @Pointcut("execution(* com.abc.pbm.racassignmentpoll.services.TEST_BdaProcessService.recover(..))")
+    @Pointcut("execution(* com.abc.pbm.racassignmentpoll.services.ClassOne.recover(..))")
     public void bdaRecoverJobs() {
     }
 
